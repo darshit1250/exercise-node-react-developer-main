@@ -1,0 +1,16 @@
+.button {
+    font: inherit;
+    cursor: pointer;
+    margin: 0px 25px;
+    background-color: #394146;
+    border: 1px solid #394146;
+    color: white;
+    padding: 0.25rem 2rem;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  

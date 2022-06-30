@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import './App.css';
+import Filter from './components/Filter/Filter';
 import Repositories from './components/Repositories/Repositories';
 import Section from './components/UI/Section/Section';
 import useHttp from './hooks/use-http';
@@ -34,6 +35,9 @@ export function App() {
   if (filteredRepositories.length > 0) {
     content = (
       <div>
+        <Section>
+          <Filter />
+        </Section>
         <Section>
           <Repositories repositories={filteredRepositories} />
         </Section>
