@@ -11,7 +11,7 @@ export function App() {
   const { filteredRepositories, setInitialRepo, setFilteredRepo } =
     useContext(RepoContext);
   const { isLoading, error, fetchCall } = useHttp();
-  const [isRepoVisible, setIsRepoVisible] = useState(true);
+  const [isRepoVisible, setIsRepoVisible] = useState(false);
 
   const showRepoHandler = () => {
     setIsRepoVisible(true);
