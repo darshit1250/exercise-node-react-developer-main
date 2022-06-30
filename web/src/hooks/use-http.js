@@ -21,6 +21,7 @@ const useHttp = () => {
     } catch (err) {
       setError(err.message);
     }
+    setIsLoading(false);
   }, []);
 
   return { isLoading, error, fetchCall };
