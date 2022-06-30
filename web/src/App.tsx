@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import Repositories from './components/Repositories/Repositories';
 import Section from './components/UI/Section/Section';
 import useHttp from './hooks/use-http';
+import RepoContext from './store/repo-context';
 
 export function App() {
-  const [repositories, setRepositories] = useState([]);
+  const { filteredRepositories, setInitialRepo, setFilteredRepo } =
+    useContext(RepoContext);
   const { isLoading, error, fetchCall } = useHttp();
 
   useEffect(() => {
     const applyData = (responseJSON: any) => {
+      // sorting the repos in reverse chronological order
       const sortedRepos = responseJSON.repositories.sort((a: any, b: any) => {
         const aDate: any = new Date(a.created_at);
         const bDate: any = new Date(b.created_at);
         return bDate - aDate;
       });
-      setRepositories(sortedRepos);
+      setInitialRepo(sortedRepos);
+      setFilteredRepo(sortedRepos);
     };
 
     fetchCall('http://localhost:4000/repos', applyData);
-  }, [fetchCall]);
+  }, [fetchCall, setInitialRepo, setFilteredRepo]);
 
   let content = (
     <Section>
@@ -27,11 +31,11 @@ export function App() {
     </Section>
   );
 
-  if (repositories.length > 0) {
+  if (filteredRepositories.length > 0) {
     content = (
       <div>
         <Section>
-          <Repositories repositories={repositories} />
+          <Repositories repositories={filteredRepositories} />
         </Section>
       </div>
     );

@@ -7,7 +7,7 @@ const RepoProvider = (props) => {
     repositories: [],
   });
   //to store language filtered repos
-  const [updatedRepoState, setUpdatedRepoState] = useState({
+  const [filteredRepoState, setFilteredRepoState] = useState({
     repositories: [],
   });
 
@@ -19,15 +19,15 @@ const RepoProvider = (props) => {
 
   // this function will be in dependancy array of useEffect
   // hence we need to use useCallback to avoid infinite loop
-  const updateRepoHandler = useCallback((updatedRepo) => {
-    setUpdatedRepoState({ repositories: updatedRepo });
+  const filterRepoHandler = useCallback((filteredRepo) => {
+    setFilteredRepoState({ repositories: filteredRepo });
   }, []);
 
   const repoContext = {
     initialRepositories: initialRepoState.repositories,
-    updatedRepositories: updatedRepoState.repositories,
-    initialRepo: initialRepoHandler,
-    updateRepo: updateRepoHandler,
+    filteredRepositories: filteredRepoState.repositories,
+    setInitialRepo: initialRepoHandler,
+    setFilteredRepo: filterRepoHandler,
   };
 
   return (

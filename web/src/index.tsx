@@ -4,10 +4,13 @@ import { App } from './App';
 import { reportWebVitals } from './reportWebVitals';
 
 import './index.css';
+import RepoProvider from './store/repoProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RepoProvider>
+      <App />
+    </RepoProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

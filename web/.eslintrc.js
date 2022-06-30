@@ -48,7 +48,7 @@ const newConfig = Object.assign({}, config, {
     'no-console': 'warn',
     'no-debugger': 'error',
     'no-empty': 'error',
-    'no-empty-function': 'error',
+    'no-empty-function': 'warn',
     'no-new-wrappers': 'error',
     'no-throw-literal': 'error',
     'no-undef-init': 'error',
