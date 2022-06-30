@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import Filter from './components/Filter/Filter';
 import Repositories from './components/Repositories/Repositories';
+import Repository from './components/Repositories/Repository';
 import Section from './components/UI/Section/Section';
 import useHttp from './hooks/use-http';
 import RepoContext from './store/repo-context';
@@ -10,6 +11,15 @@ export function App() {
   const { filteredRepositories, setInitialRepo, setFilteredRepo } =
     useContext(RepoContext);
   const { isLoading, error, fetchCall } = useHttp();
+  const [isRepoVisible, setIsRepoVisible] = useState(true);
+
+  const showRepoHandler = () => {
+    setIsRepoVisible(true);
+  };
+
+  const hideRepoHandler = () => {
+    setIsRepoVisible(false);
+  };
 
   useEffect(() => {
     const applyData = (responseJSON: any) => {
@@ -35,11 +45,12 @@ export function App() {
   if (filteredRepositories.length > 0) {
     content = (
       <div>
+        {isRepoVisible && <Repository onHideRepo={hideRepoHandler} />}
         <Section>
           <Filter />
         </Section>
         <Section>
-          <Repositories repositories={filteredRepositories} />
+          <Repositories onShowRepo={showRepoHandler} />
         </Section>
       </div>
     );

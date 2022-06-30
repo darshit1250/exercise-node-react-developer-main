@@ -5,7 +5,8 @@ const Repositories = (props) => {
   const repoCtx = useContext(RepoContext);
 
   const repoHandler = (e) => {
-    console.log(e);
+    props.onShowRepo();
+    repoCtx.setCurrentRepoID(+e.target.attributes.itemid.value);
   };
 
   return (

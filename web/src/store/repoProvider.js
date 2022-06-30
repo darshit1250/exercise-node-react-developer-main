@@ -2,14 +2,21 @@ import { useCallback, useState } from 'react';
 import RepoContext from './repo-context';
 
 const RepoProvider = (props) => {
-  //state to store the initial value of the repositories
+  // to store the initial value of the repositories
   const [initialRepoState, setInitialRepoState] = useState({
     repositories: [],
   });
-  //to store language filtered repos
+  // to store language filtered repos
   const [filteredRepoState, setFilteredRepoState] = useState({
     repositories: [],
   });
+  // to store the id of repo that will be clicked and used to
+  // fetch commit and readme file data
+  const [currentRepoID, setCurrentRepoID] = useState(0);
+
+  const setCurrentRepoIDHandler = (id) => {
+    setCurrentRepoID(id);
+  };
 
   // this function will be in dependancy array of useEffect
   // hence we need to use useCallback to avoid infinite loop
@@ -26,8 +33,10 @@ const RepoProvider = (props) => {
   const repoContext = {
     initialRepositories: initialRepoState.repositories,
     filteredRepositories: filteredRepoState.repositories,
+    currentRepoID,
     setInitialRepo: initialRepoHandler,
     setFilteredRepo: filterRepoHandler,
+    setCurrentRepoID: setCurrentRepoIDHandler,
   };
 
   return (
