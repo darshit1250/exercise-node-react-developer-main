@@ -59,7 +59,7 @@ export function App() {
   if (error) {
     content = (
       <Section>
-        <p>{error}</p>
+        <p>{error} Please reload!</p>
       </Section>
     );
   }
