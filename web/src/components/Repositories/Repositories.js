@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import RepoContext from '../../store/repo-context';
 import Card from '../UI/Card/Card';
+import classes from './Repositories.module.css';
 const Repositories = (props) => {
   const repoCtx = useContext(RepoContext);
 
@@ -15,7 +16,11 @@ const Repositories = (props) => {
         return (
           <div key={repo.id}>
             <Card>
-              <h3 onClick={repoHandler} itemID={repo.id}>
+              <h3
+                className={classes.anchor}
+                onClick={repoHandler}
+                itemID={repo.id}
+              >
                 {repo.full_name}
               </h3>
 
