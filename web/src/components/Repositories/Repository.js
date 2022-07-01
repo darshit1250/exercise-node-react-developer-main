@@ -3,6 +3,7 @@ import useHttp from '../../hooks/use-http';
 import RepoContext from '../../store/repo-context';
 import Modal from '../UI/Modal/Modal';
 import Section from '../UI/Section/Section';
+import ReadME from './ReadME';
 // import classes from './Repository.module.css';
 
 const Repository = (props) => {
@@ -86,6 +87,8 @@ const Repository = (props) => {
     <Modal onClick={props.onHideRepo}>
       <h4>Recent Commit:</h4>
       {commitContent}
+      <h4>ReadME.md</h4>
+      <ReadME />
     </Modal>
   );
 };

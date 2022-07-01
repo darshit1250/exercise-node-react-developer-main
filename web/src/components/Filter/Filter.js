@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext } from 'react';
 import RepoContext from '../../store/repo-context';
 import classes from './Filter.module.css';
